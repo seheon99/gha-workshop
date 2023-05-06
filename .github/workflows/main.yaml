@@ -41,3 +41,7 @@ jobs:
         } else {
           echo "KO"
         }
+    - name: Get secrets
+      shell: bash
+      run: |
+        echo "MY_SECRET: ${{ secrets.MY_SECRET }}"
