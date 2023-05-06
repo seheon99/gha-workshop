@@ -1,10 +1,11 @@
 name: 'Basic'
 
-on: push
+on: [ 'push', 'pull_request' ]
 
 jobs:
   first:
     name: 'First Job'
+    if: github.event_name == 'pull_request'
 
     strategy:
       matrix:
