@@ -20,18 +20,24 @@ jobs:
       run: |
         generatedValue1=$RANDOM
 
-        echo "GEN_VALUE_1=$generatedValue1" >> $GITHUB_OUTPUT
         echo $generatedValue1
+        echo "GEN_VALUE_1=$generatedValue1" >> $GITHUB_OUTPUT
     - name: Say hello world 2
       id: step2
       shell: pwsh
       run: |
-        $generatedValue2=$(Get-Random -Max 99999)
+        $generatedValue2="APIKEY"
 
-        echo "GEN_VALUE_2=$generatedValue2" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf-8 -Append
+        echo "::add-mask::$env:generatedValue2"
         echo $env:generatedValue2
+        echo "GEN_VALUE_2=$generatedValue2" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf-8 -Append
     - name: Get Hello world values
-      shell: bash
+      shell: pwsh
       run: |
         echo "GEN_VALUE 1: ${{ steps.step1.outputs.GEN_VALUE_1 }}"
         echo "GEN_VALUE 2: ${{ steps.step2.outputs.GEN_VALUE_2 }}"
+        if ("${{ steps.step2.outputs.GEN_VALUE_2 }}" -eq "APIKEY") {
+          echo "OK"
+        } else {
+          echo "KO"
+        }
