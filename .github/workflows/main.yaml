@@ -1,0 +1,19 @@
+name: 'Basic'
+
+on: push
+
+jobs:
+  build-test:
+    name: 'Build Test'
+
+    runs-on: ubuntu-latest 
+
+    steps:
+    - name: Say hello world 1 
+      shell: bash
+      run: |
+        echo "Hello world from step 1"
+    - name: Say hello world 2
+      shell: pwsh
+      run: |
+        echo "Hello world from step 2"
