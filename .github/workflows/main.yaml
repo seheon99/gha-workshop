@@ -6,42 +6,14 @@ jobs:
   first:
     name: 'First Job'
 
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ 'windows-latest', 'macos-latest', 'ubuntu-latest' ]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
-    - name: Get GITHUB_OUTPUT
+    - name: Say Hello from OS - ${{ matrix.os }}
       shell: bash
       run: |
-        echo $GITHUB_OUTPUT
-
-    - name: Say hello world 1
-      id: step1
-      shell: bash
-      run: |
-        generatedValue1=$RANDOM
-
-        echo $generatedValue1
-        echo "GEN_VALUE_1=$generatedValue1" >> $GITHUB_OUTPUT
-    - name: Say hello world 2
-      id: step2
-      shell: pwsh
-      run: |
-        $generatedValue2="APIKEY"
-
-        echo "::add-mask::$env:generatedValue2"
-        echo $env:generatedValue2
-        echo "GEN_VALUE_2=$generatedValue2" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf-8 -Append
-    - name: Get Hello world values
-      shell: pwsh
-      run: |
-        echo "GEN_VALUE 1: ${{ steps.step1.outputs.GEN_VALUE_1 }}"
-        echo "GEN_VALUE 2: ${{ steps.step2.outputs.GEN_VALUE_2 }}"
-        if ("${{ steps.step2.outputs.GEN_VALUE_2 }}" -eq "APIKEY") {
-          echo "OK"
-        } else {
-          echo "KO"
-        }
-    - name: Get secrets
-      shell: bash
-      run: |
-        echo "MY_SECRET: ${{ secrets.MY_SECRET }}"
+        echo "Hello World from ${{ matrix.os }}"
