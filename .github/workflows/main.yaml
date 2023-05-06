@@ -9,22 +9,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Get GITHUB_OUTPUT
+      shell: bash
+      run: |
+        echo $GITHUB_OUTPUT
+
     - name: Say hello world 1
+      id: step1
       shell: bash
       run: |
         generatedValue1=$RANDOM
 
-        echo "GEN_VALUE_1=$generatedValue1" >> $GITHUB_ENV
+        echo "GEN_VALUE_1=$generatedValue1" >> $GITHUB_OUTPUT
         echo $generatedValue1
     - name: Say hello world 2
+      id: step2
       shell: pwsh
       run: |
         $generatedValue2=$(Get-Random -Max 99999)
 
-        echo "GEN_VALUE_2=$generatedValue2" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf-8 -Append
+        echo "GEN_VALUE_2=$generatedValue2" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf-8 -Append
         echo $env:generatedValue2
     - name: Get Hello world values
       shell: bash
       run: |
-        echo "GEN_VALUE 1: $GEN_VALUE_1"
-        echo "GEN_VALUE 2: ${{ env.GEN_VALUE_2 }}"
+        echo "GEN_VALUE 1: ${{ steps.step1.outputs.GEN_VALUE_1 }}"
+        echo "GEN_VALUE 2: ${{ steps.step2.outputs.GEN_VALUE_2 }}"
