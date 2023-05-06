@@ -2,18 +2,74 @@ name: 'Basic'
 
 on: push
 
-jobs:
-  build-test:
-    name: 'Build Test'
+env:
+  GLOBAL_VALUE: "This is a env variable from the GLOBAL level #"
 
-    runs-on: ubuntu-latest 
+jobs:
+  first:
+    name: 'First Job'
+
+    runs-on: ubuntu-latest
+
+    env:
+      JOB_VALUE_1: "This is a env variable from the JOB level #1"
 
     steps:
-    - name: Say hello world 1 
-      shell: bash
+    - name: Say hello world 1
+      shell: bash 
+      env:
+        STEP_VALUE_1: "This is a env variable from the STEP level #1"
       run: |
-        echo "Hello world from step 1"
+        echo "GLOBAL: $GLOBAL_VALUE"
+        echo "JOB 1: $JOB_VALUE_1"
+        echo "JOB 2: $JOB_VALUE_2"
+        echo "STEP 1: $STEP_VALUE_1"
+        echo "STEP 2: $STEP_VALUE_2"
+        echo "STEP 3: $STEP_VALUE_3"
+        echo "STEP 4: $STEP_VALUE_4"
     - name: Say hello world 2
       shell: pwsh
+      env:
+        STEP_VALUE_2: "This is a env variable from the STEP level #2"
       run: |
-        echo "Hello world from step 2"
+        echo "GLOBAL: $GLOBAL_VALUE"
+        echo "JOB 1: $JOB_VALUE_1"
+        echo "JOB 2: $JOB_VALUE_2"
+        echo "STEP 1: $STEP_VALUE_1"
+        echo "STEP 2: $STEP_VALUE_2"
+        echo "STEP 3: $STEP_VALUE_3"
+        echo "STEP 4: $STEP_VALUE_4"
+
+  second:
+    name: 'Second Job'
+
+    runs-on: ubuntu-latest
+
+    env:
+      JOB_VALUE_2: "This is a env variable from the JOB level #2"
+
+    steps:
+    - name: Say hello world 3
+      shell: bash 
+      env:
+        STEP_VALUE_3: "This is a env variable from the STEP level #3"
+      run: |
+        echo "GLOBAL: $GLOBAL_VALUE"
+        echo "JOB 1: $JOB_VALUE_1"
+        echo "JOB 2: $JOB_VALUE_2"
+        echo "STEP 1: $STEP_VALUE_1"
+        echo "STEP 2: $STEP_VALUE_2"
+        echo "STEP 3: $STEP_VALUE_3"
+        echo "STEP 4: $STEP_VALUE_4"
+    - name: Say hello world 4
+      shell: pwsh
+      env:
+        STEP_VALUE_4: "This is a env variable from the STEP level #4"
+      run: |
+        echo "GLOBAL: $GLOBAL_VALUE"
+        echo "JOB 1: $JOB_VALUE_1"
+        echo "JOB 2: $JOB_VALUE_2"
+        echo "STEP 1: $STEP_VALUE_1"
+        echo "STEP 2: $STEP_VALUE_2"
+        echo "STEP 3: $STEP_VALUE_3"
+        echo "STEP 4: $STEP_VALUE_4"
