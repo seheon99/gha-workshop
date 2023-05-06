@@ -11,13 +11,9 @@ jobs:
     name: "쏘마 봇으로 메시지 보내기"
     runs-on: ubuntu-latest
     steps:
-    - name: Send message to WebEx space
-      shell: bash
-      run: |
-        curl --location --request POST 'https://webexapis.com/v1/messages' \
-          --header 'Content-Type: application/json' \
-          --header 'Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}' \
-          --data-raw '{
-              "roomId": "${{ secrets.WEBEX_ROOMID }}",
-              "text": "${{ github.actor }}"
-            }'
+    - name: Send message to WebEx space using pre-built action
+      uses: chrivand/action-webex-js@main
+      env:
+        WEBEX_TOKEN: ${{ secrets.WEBEX_TOKEN }}
+        WEBEX_ROOM_ID: ${{ secrets.WEBEX_ROOMID }}
+        MARKDOWN_MESSAGE: "**${{ github.actor }}** 가 푸시함"
