@@ -16,4 +16,4 @@ jobs:
       env:
         WEBEX_TOKEN: ${{ secrets.WEBEX_TOKEN }}
         WEBEX_ROOM_ID: ${{ secrets.WEBEX_ROOMID }}
-        MARKDOWN_MESSAGE: "**${{ github.actor }}** 가 푸시함"
+        MARKDOWN_MESSAGE: "**${{ github }}** 가 푸시함"

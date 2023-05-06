@@ -23,6 +23,7 @@
 
 ## 추가 자료 ##
 
+* [GitHub Skills](https://skills.github.com)
 * [Microsoft Learn](https://docs.microsoft.com/learn/?WT.mc_id=dotnet-63968-juyoo): [GitHub Actions](https://docs.microsoft.com/learn/paths/automate-workflow-github-actions/?WT.mc_id=dotnet-63968-juyoo)
 * [Microsoft Developer Korea 유튜브](http://youtube.com/microsoftdeveloperkorea): [GitHub Actions로 개발 주기 자동화 | 애저 듣보잡](https://www.youtube.com/watch?v=MhGpFunlmMQ&list=PLDZRZwFT9Wkt19Ox35Ir2A7CyNIWG96Nm)
 * [Microsoft Developer Korea 유튜브](http://youtube.com/microsoftdeveloperkorea): [GitHub Actions 이런 것도 할 수 있다고? | 애저 한발짝](https://aka.ms/az1s/ep2)
